@@ -3,6 +3,12 @@
 Currently only developed by
 - [microshatter](https://github.com/microshatter)
 - calc48
+- *Pending*
+- *Pending*
+- *Pending*
+- *Pending*
+- *Pending*
+- *Pending*
 
 # Vue 3 + Vite
 
