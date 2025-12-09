@@ -3,9 +3,9 @@
 Currently only developed by
 - [microshatter](https://github.com/microshatter)
 - calc48
-- *Pending*
-- *Pending*
-- *Pending*
+- *Name hidden*
+- *Name hidden*
+- *Name hidden*
 - *Pending*
 - *Pending*
 - *Pending*
