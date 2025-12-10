@@ -6,8 +6,8 @@ Currently only developed by
 - *Name hidden*
 - *Name hidden*
 - *Name hidden*
-- *Pending*
-- *Pending*
+- *Name hidden*
+- *Name hidden*
 - *Pending*
 
 # Vue 3 + Vite
