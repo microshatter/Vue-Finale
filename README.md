@@ -1,4 +1,4 @@
-# Project Theme is pending
+# Project Library reservation system
 
 Currently only developed by
 - [microshatter](https://github.com/microshatter)
