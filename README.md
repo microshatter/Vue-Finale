@@ -1,4 +1,4 @@
-# Project Theme and Member are pending
+# Project Theme is pending
 
 Currently only developed by
 - [microshatter](https://github.com/microshatter)
