@@ -46,11 +46,4 @@ watch(lang, (newLang) => {
 .logo.vue:hover {
     filter: drop-shadow(0 0 2em #42b883aa);
 }
-
-#change-lang {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-}
 </style>
