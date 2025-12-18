@@ -4,20 +4,6 @@ import { useI18n } from 'vue-i18n'
 import HelloWorld from './components/HelloWorld.vue'
 
 const { locale, availableLocales } = useI18n({useScope: 'global'})
-
-// Available languages
-const langs = ref([
-    'en-US',
-    'zh-CN'
-])
-
-// Current language
-const lang = ref(locale.value)
-
-// Watch for language changes and update the i18n locale
-watch(lang, (newLang) => {
-    locale.value = newLang
-})
 </script>
 
 <template>
