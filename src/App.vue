@@ -1,7 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import HelloWorld from './components/HelloWorld.vue'
 
 const { locale, availableLocales } = useI18n({useScope: 'global'})
 </script>

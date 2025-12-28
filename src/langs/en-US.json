@@ -1,3 +1,12 @@
 {
-    "button": "Button"
+    "mainTitle": "Library Reservation System",
+    "mainSubtitle": "Manage and reserve library resources with ease",
+    "button": {
+        "getStarted": "Get Started"
+    },
+    "features": {
+        "keyFeatures": "Key Features",
+        "bookReservations": "Book Reservations",
+        "bookReservationsDesc": "Reserve books and manage your reading list"
+    }
 }
