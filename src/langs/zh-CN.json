@@ -32,5 +32,22 @@
         "continueWith": "使用",
         "noAccount": "还没有账户？",
         "signUp": "注册"
+    },
+    "register": {
+        "title": "创建账户",
+        "subtitle": "通过创建账户加入我们",
+        "usernamePlaceholder": "输入用户名",
+        "emailPlaceholder": "输入邮箱",
+        "passwordPlaceholder": "输入密码",
+        "confirmPasswordPlaceholder": "确认密码",
+        "acceptTerms": "我同意",
+        "termsAndConditions": "条款和条件",
+        "signUp": "注册",
+        "divider": "或使用以下方式注册",
+        "continueWith": "使用",
+        "alreadyHaveAccount": "已有账户？",
+        "signIn": "登录",
+        "registering": "正在注册...",
+        "passwordMismatch": "密码不匹配"
     }
 }

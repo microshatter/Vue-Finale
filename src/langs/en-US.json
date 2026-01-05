@@ -34,5 +34,22 @@
         "signUp": "Sign up",
         "usernameRequired": "Please enter your username",
         "passwordRequired": "Please enter your password"
+    },
+    "register": {
+        "title": "Create an Account",
+        "subtitle": "Join us by creating your account",
+        "usernamePlaceholder": "Enter your username",
+        "emailPlaceholder": "Enter your email",
+        "passwordPlaceholder": "Enter your password",
+        "confirmPasswordPlaceholder": "Confirm your password",
+        "acceptTerms": "I agree to the",
+        "termsAndConditions": "Terms and Conditions",
+        "signUp": "Sign Up",
+        "divider": "or register with",
+        "continueWith": "Continue with",
+        "alreadyHaveAccount": "Already have an account?",
+        "signIn": "Sign in",
+        "registering": "Registering...",
+        "passwordMismatch": "Passwords do not match"
     }
 }

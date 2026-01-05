@@ -144,7 +144,7 @@ const handleForgotPassword = () => {
 // Handle sign up
 const handleSignUp = () => {
     ElMessage.info('Sign up clicked');
-    // In a real app, this would navigate to sign up page
+    router.push('/register');
 };
 </script>
 

@@ -5,6 +5,7 @@ const router = createRouter({
     routes: [
         {path: '/', component: () => import('./components/Home.vue')},
         {path: '/login', component: () => import('./components/login.vue')},
+        {path: '/register', component: () => import('./components/Register.vue')},
         {path: '/admin', component: () => import('./components/admin/Base.vue'), children: [
             {path: '', redirect: '/admin/dashboard'},
             {path: 'dashboard', component: () => import('./components/admin/Dashboard.vue')},
