@@ -8,5 +8,20 @@
         "keyFeatures": "Key Features",
         "bookReservations": "Book Reservations",
         "bookReservationsDesc": "Reserve books and manage your reading list"
+    },
+    "login": {
+        "title": "Welcome Back",
+        "subtitle": "Please sign in to your account",
+        "usernamePlaceholder": "Username or Email",
+        "passwordPlaceholder": "Password",
+        "rememberMe": "Remember me",
+        "forgotPassword": "Forgot password?",
+        "signIn": "Sign In",
+        "divider": "or continue with",
+        "continueWith": "Continue with",
+        "noAccount": "Don't have an account?",
+        "signUp": "Sign up",
+        "usernameRequired": "Please enter your username",
+        "passwordRequired": "Please enter your password"
     }
 }

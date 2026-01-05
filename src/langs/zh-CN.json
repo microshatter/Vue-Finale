@@ -8,5 +8,18 @@
         "keyFeatures": "关键特性",
         "bookReservations": "图书预约",
         "bookReservationsDesc": "预约图书并管理您的阅读清单"
+    },
+    "login": {
+        "title": "欢迎回来",
+        "subtitle": "请登录您的账户",
+        "usernamePlaceholder": "用户名或邮箱",
+        "passwordPlaceholder": "密码",
+        "rememberMe": "记住我",
+        "forgotPassword": "忘记密码？",
+        "signIn": "登录",
+        "divider": "或继续使用",
+        "continueWith": "使用",
+        "noAccount": "还没有账户？",
+        "signUp": "注册"
     }
 }
