@@ -10,7 +10,7 @@ const router = createRouter({
             {path: 'users', component: () => import('./components/admin/Users.vue')},
             {path: 'settings', component: () => import('./components/admin/Settings.vue')}
         ]},
-        {path: '/:pathMatch(.*)*', redirect: '/demo'}
+        {path: '/:pathMatch(.*)*', component: () => import('./components/404.vue')}
     ]
 })
 
