@@ -7,7 +7,18 @@
     "features": {
         "keyFeatures": "关键特性",
         "bookReservations": "图书预约",
-        "bookReservationsDesc": "预约图书并管理您的阅读清单"
+        "bookReservationsDesc": "预约图书并管理您的阅读清单",
+        "studyRooms": "自习室",
+        "studyRoomsDesc": "预订专门的自习空间以专注学习",
+        "equipmentRental": "设备租赁",
+        "equipmentRentalDesc": "访问图书馆设备和技术资源",
+        "easyScheduling": "便捷预约",
+        "easySchedulingDesc": "直观的日历式预约系统"
+    },
+    "about": {
+        "title": "关于此项目",
+        "description": "一个使用 Vue 3 和 Vite 构建的现代化基于Web的系统，用于高效管理图书馆资源。",
+        "techStack": "技术栈："
     },
     "login": {
         "title": "欢迎回来",

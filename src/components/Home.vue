@@ -18,25 +18,25 @@
                     <p>{{ $t('features.bookReservationsDesc') }}</p>
                 </div>
                 <div class="feature-card">
-                    <h3>🏢 Study Rooms</h3>
-                    <p>Book dedicated study spaces for focused work</p>
+                    <h3>🏢 {{ $t('features.studyRooms') }}</h3>
+                    <p>{{ $t('features.studyRoomsDesc') }}</p>
                 </div>
                 <div class="feature-card">
-                    <h3>🛠️ Equipment Rental</h3>
-                    <p>Access library equipment and technology</p>
+                    <h3>🛠️ {{ $t('features.equipmentRental') }}</h3>
+                    <p>{{ $t('features.equipmentRentalDesc') }}</p>
                 </div>
                 <div class="feature-card">
-                    <h3>⏰ Easy Scheduling</h3>
-                    <p>Intuitive calendar-based reservation system</p>
+                    <h3>⏰ {{ $t('features.easyScheduling') }}</h3>
+                    <p>{{ $t('features.easySchedulingDesc') }}</p>
                 </div>
             </div>
         </section>
 
         <!-- About Section -->
         <section class="about">
-            <h2>About This Project</h2>
-            <p>A modern, web-based system built with Vue 3 and Vite for managing library resources efficiently.</p>
-            <p><strong>Tech Stack:</strong> Vue 3 • Vite • JavaScript</p>
+            <h2>{{ $t('about.title') }}</h2>
+            <p>{{ $t('about.description') }}</p>
+            <p><strong>{{ $t('about.techStack') }}</strong> Vue 3 • Vite • JavaScript</p>
         </section>
     </div>
 </template>

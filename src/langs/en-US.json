@@ -7,7 +7,18 @@
     "features": {
         "keyFeatures": "Key Features",
         "bookReservations": "Book Reservations",
-        "bookReservationsDesc": "Reserve books and manage your reading list"
+        "bookReservationsDesc": "Reserve books and manage your reading list",
+        "studyRooms": "Study Rooms",
+        "studyRoomsDesc": "Book dedicated study spaces for focused work",
+        "equipmentRental": "Equipment Rental",
+        "equipmentRentalDesc": "Access library equipment and technology",
+        "easyScheduling": "Easy Scheduling",
+        "easySchedulingDesc": "Intuitive calendar-based reservation system"
+    },
+    "about": {
+        "title": "About This Project",
+        "description": "A modern, web-based system built with Vue 3 and Vite for managing library resources efficiently.",
+        "techStack": "Tech Stack:"
     },
     "login": {
         "title": "Welcome Back",
