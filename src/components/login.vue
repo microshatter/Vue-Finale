@@ -146,7 +146,7 @@ const handleLogin = async () => {
         await usersStore.login(loginForm.username, loginForm.password);
 
         // Redirect to dashboard or previous page
-        router.push('/admin/dashboard');
+        router.push('/user');
     } catch (error) {
         alert(error.message || 'Login failed');
     } finally {

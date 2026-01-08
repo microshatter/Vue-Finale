@@ -10,7 +10,8 @@ export const useUsersStore = defineStore("users", {
                 email: 'admin@example.com',
                 password: '123456',
                 admin: true,
-                name: 'Administrator'
+                name: 'Administrator',
+                reservations: []
             },
             {
                 id: 2,
@@ -18,7 +19,8 @@ export const useUsersStore = defineStore("users", {
                 email: 'user@example.com',
                 password: '123456',
                 admin: false,
-                name: 'Regular User'
+                name: 'Regular User',
+                reservations: []
             }
         ],
         currentUser: null,
@@ -74,7 +76,8 @@ export const useUsersStore = defineStore("users", {
                 email,
                 password, // In real app, hash this
                 admin,
-                name: username, // Add name field for compatibility
+                name: username, // Add name field for compatibility,
+                reservations: []
             };
 
             this.users.push(newUser);

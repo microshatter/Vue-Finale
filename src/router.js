@@ -7,6 +7,13 @@ const router = createRouter({
         {path: '/', component: () => import('./components/Home.vue')},
         {path: '/login', component: () => import('./components/login.vue')},
         {path: '/register', component: () => import('./components/Register.vue')},
+        {path: '/user', component: () => import('./components/user/Base.vue'), children: [
+            {path: '', redirect: '/user/dashboard'},
+            {path: 'dashboard', component: () => import('./components/user/Dashboard.vue')},
+            {path: 'settings', component: () => import('./components/user/Settings.vue')},
+            {path: 'reservations', component: () => import('./components/user/Reservations.vue')},
+            {path: 'reservations/new', component: () => import('./components/user/New.vue')}
+        ]},
         {path: '/admin', component: () => import('./components/admin/Base.vue'), children: [
             {path: '', redirect: '/admin/dashboard'},
             {path: 'dashboard', component: () => import('./components/admin/Dashboard.vue')},
@@ -24,7 +31,12 @@ router.beforeEach((to, from, next) => {
         return next()
     }
     const usersStore = useUsersStore();
-    if (!usersStore.isLoggedIn && to.path.startsWith('/admin')) {
+    // Forbid access to admin routes for non-admin users
+    if (to.path.startsWith('/admin') && !usersStore.isAdmin) {
+        return next('/forbidden')
+    }
+
+    if (!usersStore.isLoggedIn && (to.path.startsWith('/admin') || to.path.startsWith('/user'))) {
         return next('/login')
     }
     next()
