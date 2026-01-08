@@ -11,6 +11,10 @@ import zhCN from './langs/zh-CN.json'
 import App from './App.vue'
 import router from './router'
 
+import { createPinia } from 'pinia'
+
+const pinia = createPinia()
+
 const i18n = createI18n({
     legacy: false,
     locale: 'en-US',
@@ -22,6 +26,7 @@ const i18n = createI18n({
 })
 
 const app = createApp(App)
+app.use(pinia)
 app.use(ElementPlus)
 app.use(i18n)
 app.use(router)

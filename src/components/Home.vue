@@ -1,42 +1,54 @@
 <template>
-    <div class="home">
+    <div class="w-full min-h-screen">
         <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1>📚 {{ $t('mainTitle') }}</h1>
-                <p>{{ $t('mainSubtitle') }}</p>
-                <button class="cta-button">{{ $t('button.getStarted') }}</button>
+        <section class="bg-gradient-to-br from-blue-600 to-purple-700 text-white py-24 px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">📚 {{ $t('mainTitle') }}</h1>
+                <p class="text-xl mb-8 max-w-2xl mx-auto">{{ $t('mainSubtitle') }}</p>
+                <button class="bg-white text-blue-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                    {{ $t('button.getStarted') }}
+                </button>
             </div>
         </section>
 
         <!-- Features Section -->
-        <section class="features">
-            <h2>{{ $t('features.keyFeatures') }}</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>📖 {{ $t('features.bookReservations') }}</h3>
-                    <p>{{ $t('features.bookReservationsDesc') }}</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🏢 {{ $t('features.studyRooms') }}</h3>
-                    <p>{{ $t('features.studyRoomsDesc') }}</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🛠️ {{ $t('features.equipmentRental') }}</h3>
-                    <p>{{ $t('features.equipmentRentalDesc') }}</p>
-                </div>
-                <div class="feature-card">
-                    <h3>⏰ {{ $t('features.easyScheduling') }}</h3>
-                    <p>{{ $t('features.easySchedulingDesc') }}</p>
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-6xl mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">{{ $t('features.keyFeatures') }}</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-800">📖 {{ $t('features.bookReservations') }}</h3>
+                        <p class="text-gray-600">{{ $t('features.bookReservationsDesc') }}</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-800">🏢 {{ $t('features.studyRooms') }}</h3>
+                        <p class="text-gray-600">{{ $t('features.studyRoomsDesc') }}</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-800">🛠️ {{ $t('features.equipmentRental') }}</h3>
+                        <p class="text-gray-600">{{ $t('features.equipmentRentalDesc') }}</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-800">⏰ {{ $t('features.easyScheduling') }}</h3>
+                        <p class="text-gray-600">{{ $t('features.easySchedulingDesc') }}</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- About Section -->
-        <section class="about">
-            <h2>{{ $t('about.title') }}</h2>
-            <p>{{ $t('about.description') }}</p>
-            <p><strong>{{ $t('about.techStack') }}</strong> Vue 3 • Vite • JavaScript</p>
+        <section class="py-16">
+            <div class="max-w-3xl mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-6 text-gray-800">{{ $t('about.title') }}</h2>
+                <p class="text-lg text-gray-600 mb-4">{{ $t('about.description') }}</p>
+                <p class="text-lg text-gray-700">
+                    <strong class="font-semibold">{{ $t('about.techStack') }}</strong> Vue 3 • Vite • JavaScript
+                </p>
+            </div>
         </section>
     </div>
 </template>
@@ -44,86 +56,3 @@
 <script setup>
 // Component logic here
 </script>
-
-<style scoped>
-.home {
-    width: 100%;
-    min-height: 100vh;
-}
-
-.hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 100px 20px;
-    text-align: center;
-}
-
-.hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-}
-
-.hero-content p {
-    font-size: 1.25rem;
-    margin-bottom: 30px;
-}
-
-.cta-button {
-    background-color: white;
-    color: #667eea;
-    padding: 12px 30px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: transform 0.3s;
-}
-
-.cta-button:hover {
-    transform: scale(1.05);
-}
-
-.features {
-    padding: 60px 20px;
-    background-color: #f9f9f9;
-}
-
-.features h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 40px;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.feature-card {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.feature-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 10px;
-}
-
-.about {
-    padding: 60px 20px;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.about h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-</style>

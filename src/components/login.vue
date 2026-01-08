@@ -1,66 +1,99 @@
 <template>
-    <div class="login-container">
-        <div class="login-form">
-            <div class="login-header">
-                <h2>{{ $t('login.title') }}</h2>
-                <p class="subtitle">{{ $t('login.subtitle') }}</p>
+    <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-blue-100 p-4">
+        <div class="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-800">{{ $t('login.title') }}</h2>
+                <p class="text-gray-600 mt-2">{{ $t('login.subtitle') }}</p>
             </div>
 
-            <el-form :model="loginForm" :rules="loginRules" ref="loginFormRef" class="form">
-                <el-form-item prop="username">
-                    <el-input v-model="loginForm.username" :placeholder="$t('login.usernamePlaceholder')" size="large">
-                        <template #prefix>
-                            <el-icon>
-                                <User />
-                            </el-icon>
-                        </template>
-                    </el-input>
-                </el-form-item>
-
-                <el-form-item prop="password">
-                    <el-input v-model="loginForm.password" :placeholder="$t('login.passwordPlaceholder')"
-                        type="password" size="large" show-password>
-                        <template #prefix>
-                            <el-icon>
-                                <Lock />
-                            </el-icon>
-                        </template>
-                    </el-input>
-                </el-form-item>
-
-                <el-form-item>
-                    <div class="remember-me">
-                        <el-checkbox v-model="loginForm.rememberMe">{{ $t('login.rememberMe') }}</el-checkbox>
-                        <el-link type="primary" href="#" @click.prevent="handleForgotPassword">
-                            {{ $t('login.forgotPassword') }}
-                        </el-link>
+            <form class="mb-6">
+                <div class="mb-4">
+                    <div class="relative">
+                        <input 
+                            v-model="loginForm.username" 
+                            :placeholder="$t('login.usernamePlaceholder')"
+                            class="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                        >
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
                     </div>
-                </el-form-item>
+                </div>
 
-                <el-form-item>
-                    <el-button type="primary" size="large" class="login-button" @click="handleLogin" :loading="loading"
-                        :disabled="loading">
-                        {{ $t('login.signIn') }}
-                    </el-button>
-                </el-form-item>
-            </el-form>
+                <div class="mb-4">
+                    <div class="relative">
+                        <input 
+                            v-model="loginForm.password" 
+                            :placeholder="$t('login.passwordPlaceholder')"
+                            type="password"
+                            class="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                        >
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="divider">
-                <span>{{ $t('login.divider') }}</span>
+                <div class="flex justify-between items-center mb-6">
+                    <div class="flex items-center">
+                        <input 
+                            id="remember-me" 
+                            v-model="loginForm.rememberMe" 
+                            type="checkbox" 
+                            class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                        >
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-700">
+                            {{ $t('login.rememberMe') }}
+                        </label>
+                    </div>
+                    <a href="#" @click.prevent="handleForgotPassword" class="text-sm text-blue-600 hover:text-blue-800">
+                        {{ $t('login.forgotPassword') }}
+                    </a>
+                </div>
+
+                <button 
+                    type="button" 
+                    @click="handleLogin"
+                    :disabled="loading"
+                    class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-75 transition"
+                >
+                    <span v-if="!loading">{{ $t('login.signIn') }}</span>
+                    <span v-else class="flex items-center justify-center">
+                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        {{ $t('login.signingIn') }}
+                    </span>
+                </button>
+            </form>
+
+            <div class="flex items-center mb-6">
+                <div class="flex-grow border-t border-gray-300"></div>
+                <span class="mx-4 text-gray-500 text-sm">{{ $t('login.divider') }}</span>
+                <div class="flex-grow border-t border-gray-300"></div>
             </div>
 
-            <div class="social-login">
-                <el-button v-for="provider in socialProviders" :key="provider.id" class="social-button"
-                    @click="handleSocialLogin(provider.id)">
+            <div class="space-y-3 mb-8">
+                <button 
+                    v-for="provider in socialProviders" 
+                    :key="provider.id"
+                    @click="handleSocialLogin(provider.id)"
+                    class="w-full flex items-center justify-center px-4 py-2.5 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition"
+                >
                     {{ $t('login.continueWith') }} {{ provider.name }}
-                </el-button>
+                </button>
             </div>
 
-            <div class="signup-section">
+            <div class="text-center text-sm text-gray-600">
                 <p>{{ $t('login.noAccount') }}
-                    <el-link type="primary" @click="handleSignUp">
+                    <button @click="handleSignUp" class="text-blue-600 hover:text-blue-800 font-medium">
                         {{ $t('login.signUp') }}
-                    </el-link>
+                    </button>
                 </p>
             </div>
         </div>
@@ -69,9 +102,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue';
-import { ElMessage } from 'element-plus';
 import { useRouter } from 'vue-router';
-import { User, Lock } from '@element-plus/icons-vue';
 
 const router = useRouter();
 
@@ -81,21 +112,6 @@ const loginForm = reactive({
     password: '',
     rememberMe: false
 });
-
-// Form validation rules
-const loginRules = {
-    username: [
-        { required: true, message: 'Please enter your username', trigger: 'blur' },
-        { min: 3, max: 20, message: 'Username length should be 3 to 20 characters', trigger: 'blur' }
-    ],
-    password: [
-        { required: true, message: 'Please enter your password', trigger: 'blur' },
-        { min: 6, message: 'Password length should be at least 6 characters', trigger: 'blur' }
-    ]
-};
-
-// Refs
-const loginFormRef = ref();
 
 // State
 const loading = ref(false);
@@ -109,146 +125,47 @@ const socialProviders = ref([
 
 // Handle login
 const handleLogin = async () => {
-    if (!loginFormRef.value) return;
-
-    try {
-        await loginFormRef.value.validate();
-
-        loading.value = true;
-
-        // Simulate API call
-        setTimeout(() => {
-            loading.value = false;
-            ElMessage.success('Login successful!');
-            // Redirect to dashboard or previous page
-            router.push('/admin/dashboard');
-        }, 1500);
-    } catch (error) {
-        console.error('Validation failed:', error);
-        ElMessage.error('Please fill in all required fields correctly');
+    // Basic validation
+    if (!loginForm.username || loginForm.username.length < 3) {
+        alert('Please enter a valid username (at least 3 characters)');
+        return;
     }
+    
+    if (!loginForm.password || loginForm.password.length < 6) {
+        alert('Please enter a valid password (at least 6 characters)');
+        return;
+    }
+
+    loading.value = true;
+
+    // Simulate API call
+    setTimeout(() => {
+        loading.value = false;
+        alert('Login successful!');
+        // Redirect to dashboard or previous page
+        router.push('/admin/dashboard');
+    }, 1500);
 };
 
 // Handle social login
 const handleSocialLogin = (providerId) => {
-    ElMessage.info(`Login with ${providerId} clicked`);
+    alert(`Login with ${providerId} clicked`);
     // In a real app, this would redirect to the social login provider
 };
 
 // Handle forgot password
 const handleForgotPassword = () => {
-    ElMessage.info('Forgot password clicked');
+    alert('Forgot password clicked');
     // In a real app, this would navigate to password reset page
 };
 
 // Handle sign up
 const handleSignUp = () => {
-    ElMessage.info('Sign up clicked');
+    alert('Sign up clicked');
     router.push('/register');
 };
 </script>
 
 <style scoped>
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    padding: 20px;
-}
-
-.login-form {
-    width: 100%;
-    max-width: 420px;
-    padding: 40px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-}
-
-.login-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.login-header h2 {
-    margin: 0 0 8px 0;
-    font-size: 24px;
-    font-weight: 600;
-    color: #1f2d3d;
-}
-
-.subtitle {
-    margin: 0;
-    color: #8492a6;
-    font-size: 14px;
-}
-
-.form {
-    margin-bottom: 20px;
-}
-
-.remember-me {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.login-button {
-    width: 100%;
-    height: 48px;
-    font-size: 16px;
-    letter-spacing: 1px;
-}
-
-.divider {
-    display: flex;
-    align-items: center;
-    margin: 25px 0;
-}
-
-.divider::before,
-.divider::after {
-    content: '';
-    flex: 1;
-    border-bottom: 1px solid #dfe4ed;
-}
-
-.divider span {
-    padding: 0 12px;
-    color: #909399;
-    font-size: 14px;
-}
-
-.social-login {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.social-button {
-    height: 44px;
-    font-size: 14px;
-}
-
-.signup-section {
-    text-align: center;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #e4e7ed;
-}
-
-.signup-section p {
-    margin: 0;
-    color: #606266;
-    font-size: 14px;
-}
-
-@media (max-width: 768px) {
-    .login-form {
-        padding: 30px 20px;
-        margin: 0 10px;
-    }
-}
+/* Tailwind CSS is used directly in class attributes */
 </style>

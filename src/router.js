@@ -16,4 +16,17 @@ const router = createRouter({
     ]
 })
 
+
+// router.beforeEach((to, from, next) => {
+//     if (to.path === '/login' || to.path === '/register') {
+//         return next()
+//     }
+//     const token = localStorage.getItem('token')
+//     if (!token && to.path.startsWith('/admin')) {
+//         return next('/login')
+//     }
+//     next()
+// })
+
+
 export default router
