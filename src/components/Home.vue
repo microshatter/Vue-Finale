@@ -71,6 +71,13 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const getStarted = () => {
-    router.push('/register');
+    // First, check if the user is logged in
+    // If logged in, go to dashboard, else go to register
+    if (localStorage.getItem('user')) {
+        router.push('/user');
+        return;
+    } else {
+        router.push('/register');
+    }
 }
 </script>
