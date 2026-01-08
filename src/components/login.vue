@@ -95,6 +95,8 @@
                         {{ $t('login.signUp') }}
                     </button>
                 </p>
+
+                <p><button @click="handleHome" class="text-blue-600 hover:text-blue-800 font-medium">{{ $t('pageNotFound.goHome') }}</button></p>
             </div>
         </div>
     </div>
@@ -167,6 +169,10 @@ const handleForgotPassword = () => {
 // Handle sign up
 const handleSignUp = () => {
     router.push('/register');
+};
+
+const handleHome = () => {
+    router.push('/');
 };
 </script>
 

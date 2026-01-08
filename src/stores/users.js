@@ -3,7 +3,24 @@ import { defineStore } from "pinia";
 
 export const useUsersStore = defineStore("users", {
     state: () => ({
-        users: [],
+        users: [
+            {
+                id: 1,
+                username: 'admin',
+                email: 'admin@example.com',
+                password: '123456',
+                admin: true,
+                name: 'Administrator'
+            },
+            {
+                id: 2,
+                username: 'user',
+                email: 'user@example.com',
+                password: '123456',
+                admin: false,
+                name: 'Regular User'
+            }
+        ],
         currentUser: null,
         isAuthenticated: false,
     }),
@@ -17,24 +34,6 @@ export const useUsersStore = defineStore("users", {
         async fetchUsers() {
             // For demo purposes, we'll add some default users with proper structure
             // In a real app, this would fetch from your API
-            this.users = [
-                {
-                    id: 1,
-                    username: 'admin',
-                    email: 'admin@example.com',
-                    password: 'admin123',
-                    admin: true,
-                    name: 'Administrator'
-                },
-                {
-                    id: 2,
-                    username: 'user',
-                    email: 'user@example.com',
-                    password: 'user123',
-                    admin: false,
-                    name: 'Regular User'
-                }
-            ];
         },
 
         async login(username, password) {

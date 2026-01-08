@@ -50,6 +50,31 @@
         "alreadyHaveAccount": "Already have an account?",
         "signIn": "Sign in",
         "registering": "Registering...",
-        "passwordMismatch": "Passwords do not match"
-    }
+        "passwordMismatch": "Passwords do not match",
+        "successMessage": "Registration successful! Please log in."
+    },
+    "user": {
+        "base": {
+            "title": "User Dashboard"
+        }
+    },
+    "common": {
+        "home": "Home",
+        "users": "Users"
+    },
+    "auth": {
+        "logout": "Logout"
+    },
+    "pageNotFound": {
+        "title": "Page Not Found",
+        "description": "Sorry, we couldn't find the page you're looking for.",
+        "goHome": "Go to Homepage"
+    },
+    "forbidden": {
+        "title": "Access Forbidden",
+        "description": "Sorry, you don't have permission to access this page.",
+        "goHome": "Go to Homepage",
+        "contactAdmin": "Contact Administrator"
+    },
+    "change-lang": "Change Language"
 }

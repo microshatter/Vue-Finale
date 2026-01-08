@@ -6,12 +6,14 @@ const { locale, availableLocales } = useI18n({useScope: 'global'})
 
 <template>
     <RouterView />
-    <div id="change-lang">
-        <el-select v-model="locale">
-            <el-option v-for="locale in availableLocales" :key="`locale-${locale}`" :value="locale">
-                {{ locale }}
-            </el-option>
-        </el-select>
+    <hr>
+    <div id="change-lang" class="text-center mt-4">
+        <label>{{ $t('change-lang') }}</label>
+        <div class="flex space-x-2 mt-2 justify-center">
+            <button v-for="loc in availableLocales" :key="`locale-${loc}`" @click="locale = loc" :class="locale === loc ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'" class="px-4 py-2 rounded transition">
+                {{ loc }}
+            </button>
+        </div>
     </div>
 </template>
 
