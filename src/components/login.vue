@@ -9,8 +9,8 @@
             <form class="mb-6">
                 <div class="mb-4">
                     <div class="relative">
-                        <input 
-                            v-model="loginForm.username" 
+                        <input
+                            v-model="loginForm.username"
                             :placeholder="$t('login.usernamePlaceholder')"
                             class="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
                         >
@@ -24,8 +24,8 @@
 
                 <div class="mb-4">
                     <div class="relative">
-                        <input 
-                            v-model="loginForm.password" 
+                        <input
+                            v-model="loginForm.password"
                             :placeholder="$t('login.passwordPlaceholder')"
                             type="password"
                             class="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
@@ -40,10 +40,10 @@
 
                 <div class="flex justify-between items-center mb-6">
                     <div class="flex items-center">
-                        <input 
-                            id="remember-me" 
-                            v-model="loginForm.rememberMe" 
-                            type="checkbox" 
+                        <input
+                            id="remember-me"
+                            v-model="loginForm.rememberMe"
+                            type="checkbox"
                             class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                         >
                         <label for="remember-me" class="ml-2 block text-sm text-gray-700">
@@ -55,8 +55,8 @@
                     </a>
                 </div>
 
-                <button 
-                    type="button" 
+                <button
+                    type="button"
                     @click="handleLogin"
                     :disabled="loading"
                     class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-75 transition"
@@ -79,8 +79,8 @@
             </div>
 
             <div class="space-y-3 mb-8">
-                <button 
-                    v-for="provider in socialProviders" 
+                <button
+                    v-for="provider in socialProviders"
                     :key="provider.id"
                     @click="handleSocialLogin(provider.id)"
                     class="w-full flex items-center justify-center px-4 py-2.5 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition"
@@ -103,8 +103,10 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
+import { useUsersStore } from '../stores/users.js';
 
 const router = useRouter();
+const usersStore = useUsersStore();
 
 // Form data
 const loginForm = reactive({
@@ -130,7 +132,7 @@ const handleLogin = async () => {
         alert('Please enter a valid username (at least 3 characters)');
         return;
     }
-    
+
     if (!loginForm.password || loginForm.password.length < 6) {
         alert('Please enter a valid password (at least 6 characters)');
         return;
@@ -138,13 +140,16 @@ const handleLogin = async () => {
 
     loading.value = true;
 
-    // Simulate API call
-    setTimeout(() => {
-        loading.value = false;
-        alert('Login successful!');
+    try {
+        await usersStore.login(loginForm.username, loginForm.password);
+
         // Redirect to dashboard or previous page
         router.push('/admin/dashboard');
-    }, 1500);
+    } catch (error) {
+        alert(error.message || 'Login failed');
+    } finally {
+        loading.value = false;
+    }
 };
 
 // Handle social login
@@ -161,7 +166,6 @@ const handleForgotPassword = () => {
 
 // Handle sign up
 const handleSignUp = () => {
-    alert('Sign up clicked');
     router.push('/register');
 };
 </script>
