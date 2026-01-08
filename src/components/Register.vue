@@ -8,9 +8,9 @@
 
             <form class="mb-6" @submit.prevent="handleRegister">
                 <div class="mb-4">
-                    <input 
-                        v-model="registerForm.username" 
-                        :placeholder="$t('register.usernamePlaceholder')" 
+                    <input
+                        v-model="registerForm.username"
+                        :placeholder="$t('register.usernamePlaceholder')"
                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         type="text"
                     />
@@ -18,9 +18,9 @@
                 </div>
 
                 <div class="mb-4">
-                    <input 
-                        v-model="registerForm.email" 
-                        :placeholder="$t('register.emailPlaceholder')" 
+                    <input
+                        v-model="registerForm.email"
+                        :placeholder="$t('register.emailPlaceholder')"
                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         type="email"
                     />
@@ -28,8 +28,8 @@
                 </div>
 
                 <div class="mb-4">
-                    <input 
-                        v-model="registerForm.password" 
+                    <input
+                        v-model="registerForm.password"
                         :placeholder="$t('register.passwordPlaceholder')"
                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         type="password"
@@ -38,8 +38,8 @@
                 </div>
 
                 <div class="mb-4">
-                    <input 
-                        v-model="registerForm.confirmPassword" 
+                    <input
+                        v-model="registerForm.confirmPassword"
                         :placeholder="$t('register.confirmPasswordPlaceholder')"
                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         type="password"
@@ -48,14 +48,14 @@
                 </div>
 
                 <div class="flex items-center mb-6">
-                    <input 
-                        v-model="registerForm.acceptTerms" 
-                        type="checkbox" 
+                    <input
+                        v-model="registerForm.acceptTerms"
+                        type="checkbox"
                         id="acceptTerms"
                         class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                     />
                     <label for="acceptTerms" class="ml-2 block text-sm text-gray-700">
-                        {{ $t('register.acceptTerms') }} 
+                        {{ $t('register.acceptTerms') }}
                         <a href="#" @click.prevent="showTerms" class="text-blue-600 hover:text-blue-800">
                             {{ $t('register.termsAndConditions') }}
                         </a>
@@ -63,7 +63,7 @@
                     <div v-if="errors.acceptTerms" class="mt-1 text-red-500 text-sm ml-6">{{ errors.acceptTerms }}</div>
                 </div>
 
-                <button 
+                <button
                     type="submit"
                     :disabled="loading"
                     class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-75 transition-colors duration-300"
@@ -88,8 +88,8 @@
             </div>
 
             <div class="space-y-3">
-                <button 
-                    v-for="provider in socialProviders" 
+                <button
+                    v-for="provider in socialProviders"
                     :key="provider.id"
                     @click="handleSocialRegister(provider.id)"
                     class="w-full flex items-center justify-center px-4 py-2.5 border border-gray-300 rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-300"
@@ -113,8 +113,10 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
+import { useUsersStore } from '../stores/users.js';
 
 const router = useRouter();
+const usersStore = useUsersStore();
 
 // Form data
 const registerForm = reactive({
@@ -147,10 +149,10 @@ const socialProviders = ref([
 // Validate form
 const validateForm = () => {
     let isValid = true;
-    
+
     // Reset errors
     Object.keys(errors).forEach(key => errors[key] = '');
-    
+
     // Username validation
     if (!registerForm.username) {
         errors.username = $t('login.usernameRequired') || 'Username is required';
@@ -159,7 +161,7 @@ const validateForm = () => {
         errors.username = 'Username length should be 3 to 20 characters';
         isValid = false;
     }
-    
+
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!registerForm.email) {
@@ -169,7 +171,7 @@ const validateForm = () => {
         errors.email = 'Please enter a valid email';
         isValid = false;
     }
-    
+
     // Password validation
     if (!registerForm.password) {
         errors.password = $t('login.passwordRequired') || 'Password is required';
@@ -178,7 +180,7 @@ const validateForm = () => {
         errors.password = 'Password length should be at least 6 characters';
         isValid = false;
     }
-    
+
     // Confirm password validation
     if (!registerForm.confirmPassword) {
         errors.confirmPassword = 'Please confirm your password';
@@ -187,13 +189,13 @@ const validateForm = () => {
         errors.confirmPassword = $t('register.passwordMismatch') || 'Passwords do not match';
         isValid = false;
     }
-    
+
     // Terms acceptance validation
     if (!registerForm.acceptTerms) {
         errors.acceptTerms = 'You must accept the terms and conditions';
         isValid = false;
     }
-    
+
     return isValid;
 };
 
@@ -206,16 +208,21 @@ const handleRegister = async () => {
     try {
         loading.value = true;
 
-        // Simulate API call
-        setTimeout(() => {
-            loading.value = false;
-            alert($t('register.successMessage') || 'Registration successful! Please log in.');
-            // Redirect to login page after successful registration
-            router.push('/login');
-        }, 1500);
+        await usersStore.register(
+            registerForm.username,
+            registerForm.email,
+            registerForm.password,
+            false // admin flag, default to false
+        );
+
+        alert($t('register.successMessage') || 'Registration successful! Please log in.');
+        // Redirect to login page after successful registration
+        router.push('/login');
     } catch (error) {
         console.error('Registration failed:', error);
-        alert('Registration failed. Please try again.');
+        alert(error.message || 'Registration failed. Please try again.');
+    } finally {
+        loading.value = false;
     }
 };
 

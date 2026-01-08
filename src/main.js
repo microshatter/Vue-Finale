@@ -30,4 +30,10 @@ app.use(pinia)
 app.use(ElementPlus)
 app.use(i18n)
 app.use(router)
+
+// Initialize auth state
+import { useUsersStore } from './stores/users.js'
+const usersStore = useUsersStore()
+usersStore.initializeAuth()
+
 app.mount('#app')

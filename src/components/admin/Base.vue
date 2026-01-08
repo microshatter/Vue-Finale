@@ -8,12 +8,12 @@
                 <div class="header-right">
                     <el-dropdown>
                         <span class="el-dropdown-link">
-                            Admin User
+                            {{ usersStore.getCurrentUser?.username || 'Admin User' }}
                         </span>
                         <template #dropdown>
                             <el-dropdown-menu>
                                 <el-dropdown-item>Profile</el-dropdown-item>
-                                <el-dropdown-item>Logout</el-dropdown-item>
+                                <el-dropdown-item @click="handleLogout">Logout</el-dropdown-item>
                             </el-dropdown-menu>
                         </template>
                     </el-dropdown>
@@ -49,9 +49,17 @@
 </template>
 
 <script setup>
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import { useUsersStore } from '../../stores/users.js'
 
 const route = useRoute()
+const router = useRouter()
+const usersStore = useUsersStore()
+
+const handleLogout = () => {
+    usersStore.logout()
+    router.push('/login')
+}
 </script>
 
 <style scoped>

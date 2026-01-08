@@ -16,7 +16,7 @@
           </div>
           <div>
             <p class="text-gray-500 text-sm">Total Users</p>
-            <p class="text-2xl font-bold">1,250</p>
+            <p class="text-2xl font-bold">{{ totalUsers }}</p>
           </div>
         </div>
       </div>
@@ -122,7 +122,7 @@
             </div>
             <span class="font-medium text-gray-700">Add User</span>
           </button>
-          
+
           <button class="flex flex-col items-center justify-center p-4 bg-green-50 hover:bg-green-100 rounded-lg transition border border-green-100">
             <div class="p-3 rounded-full bg-green-100 text-green-600 mb-2">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -131,7 +131,7 @@
             </div>
             <span class="font-medium text-gray-700">New Booking</span>
           </button>
-          
+
           <button class="flex flex-col items-center justify-center p-4 bg-yellow-50 hover:bg-yellow-100 rounded-lg transition border border-yellow-100">
             <div class="p-3 rounded-full bg-yellow-100 text-yellow-600 mb-2">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -140,7 +140,7 @@
             </div>
             <span class="font-medium text-gray-700">Manage Resources</span>
           </button>
-          
+
           <button class="flex flex-col items-center justify-center p-4 bg-red-50 hover:bg-red-100 rounded-lg transition border border-red-100">
             <div class="p-3 rounded-full bg-red-100 text-red-600 mb-2">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -199,5 +199,14 @@
 </template>
 
 <script setup>
-// Dashboard logic here
+import { computed, onMounted } from 'vue';
+import { useUsersStore } from '../../stores/users.js';
+
+const usersStore = useUsersStore();
+
+const totalUsers = computed(() => usersStore.getUsers.length);
+
+onMounted(async () => {
+    await usersStore.fetchUsers();
+});
 </script>

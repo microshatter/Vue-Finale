@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+import { useUsersStore } from "./stores/users.js";
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -17,16 +18,16 @@ const router = createRouter({
 })
 
 
-// router.beforeEach((to, from, next) => {
-//     if (to.path === '/login' || to.path === '/register') {
-//         return next()
-//     }
-//     const token = localStorage.getItem('token')
-//     if (!token && to.path.startsWith('/admin')) {
-//         return next('/login')
-//     }
-//     next()
-// })
+router.beforeEach((to, from, next) => {
+    if (to.path === '/login' || to.path === '/register') {
+        return next()
+    }
+    const usersStore = useUsersStore();
+    if (!usersStore.isLoggedIn && to.path.startsWith('/admin')) {
+        return next('/login')
+    }
+    next()
+})
 
 
 export default router
